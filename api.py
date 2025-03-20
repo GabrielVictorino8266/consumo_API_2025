@@ -49,9 +49,12 @@ class API_Star_Wars(API_consumer):
         return self.__URL
 
     def extract(self, id):
-    # Atividade 4, que resultará o terceiro commit
-        pass
-
+        URL = self.URL + str(id)
+        try:
+            data = requests.get(URL).json()
+            return ((data.get('name'), data.get('films')))
+        except:
+            print("Erro ao consumir a API, verifique o ID, as requisições e tente novamente.")
 class API_Ice_and_Fire(API_consumer):
     ''' The universe of Ice And Fire '''
     def __init__(self):
