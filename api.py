@@ -32,8 +32,12 @@ class API_Rick_Morty(API_consumer):
         return self.__URL
 
     def extract(self, id):
-    # Atividade 3, que resultará o segundo commit
-        pass
+        URL = self.URL + str(id)
+        try:
+            data = requests.get(URL).json()
+            return ((data.get('id'), data.get('name'), data.get('species')))
+        except:
+            print("Erro ao consumir a API, verifique o ID, as requisições e tente novamente.")
 
 class API_Star_Wars(API_consumer):
     ''' The universe of Star Wars '''
